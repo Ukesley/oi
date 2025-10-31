@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz 22 Anos, Benzinha ❤️</title>
+    <link rel="stylesheet" href="benzinha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-animation" id="bgAnimation"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>Feliz 22 anos, meu amor ❤️</h1>
+        <p>Hoje é o seu dia, estava muito indeciso se fazia uma carta ou falava pessoalmente e do nada lembrei de fazer um site hahaha.</p>
+        <button class="btn-start" onclick="startSurprise()">Começar a surpresa 🎁</button>
+    </section>
+
+    <!-- Nossa História -->
+    <section class="section" id="history">
+        <h2>Nossa História</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Primeiro Encontro</div>
+                    <p>Aquele dia mágico quando nos conhecemos... 💕</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Primeiro "Eu te amo"</div>
+                    <p>O momento mais lindo quando você disse que me amava... 💖</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Nossas Aventuras</div>
+                    <p>Cada viagem, cada risada, cada momento ao seu lado... ✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section class="section" id="gallery">
+        <h2>Galeria de Momentos</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="foto1.jpeg" alt="Nós">
+            </div>
+            <div class="gallery-item">
+                <img src="foto2.jpeg" alt="Amor">
+            </div>
+            <div class="gallery-item">
+                <img src="foto3.jpeg" alt="Benzinha">
+            </div>
+            <div class="gallery-item">
+                <img src="foto4.jpeg" alt="22 Anos">
+            </div>
+            <div class="gallery-item">
+                <img src="foto5.jpeg" alt="22 Anos">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mensagens -->
+    <section class="section" id="messages">
+        <h2>Mensagens de Amor</h2>
+        <div class="messages">
+            <div class="message-card">
+                <p>Minha Benzinha, você é a luz que ilumina meus dias mais escuros. Cada momento ao seu lado é um presente que eu agradeço todos os dias.</p>
+            </div>
+            <div class="message-card">
+                <p>Seus 22 anos são apenas o começo de uma jornada linda. Que eu possa estar ao seu lado em cada conquista, cada sorriso, cada sonho realizado.</p>
+            </div>
+            <div class="message-card">
+                <p>Você é minha inspiração, minha paz, meu lar. Obrigado por existir e por escolher compartilhar sua vida comigo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador -->
+    <section class="section" id="counter">
+        <h2>Nosso Tempo Juntos</h2>
+        <div class="counter" id="timeCounter">Carregando...</div>
+    </section>
+
+    <!-- Mensagem Final -->
+    <section class="section" id="final">
+        <h2>Para Minha Princesa</h2>
+        <div class="message-card">
+            <p>Parabéns pelos seus 22 anos! Que a vida te traga tantas alegrias quanto você trouxe para a minha. Sabemos que não está sendo fácil pra minha princesa que está sendo muito cansativo, mas sei que minha neném vai conseguir superar tudo isso e atingir o seu sonho.</p>
+            <button class="btn-start" onclick="showFinalSurprise()">Ver Surpresa Final 💖</button>
+        </div>
+    </section>
+
+    <!-- Botões de navegação -->
+<div class="nav-buttons">
+  <button id="btnPrev" onclick="changeSection(-1)">◀ Anterior</button>
+  <button id="btnNext" onclick="changeSection(1)">Próxima ▶</button>
+</div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Com amor, do seu Benzinho 💕</p>
+    </footer>
+
+    
+
+    <!-- Modal Final -->
+    <div class="modal" id="finalModal">
+        <div class="modal-content">
+            <h2>TE AMO INFINITAMENTE! ❤️</h2>
+            <p>Você é a melhor coisa que aconteceu na minha vida!</p>
+            <button class="btn-start" onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Controles de Música -->
+    <div class="music-controls" onclick="toggleMusic()">
+        <i class="fas fa-music" id="musicIcon"></i>
+    </div>
+
+    <!-- Áudio -->
+    <audio id="bgMusic" loop>
+        <source src="HR4ZxjGQGYY_160.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Animação de fundo
+        function createConfetti() {
+            const bg = document.getElementById('bgAnimation');
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = ['#ff69b4', '#ffd700', '#ffb6c1', '#ffa500'][Math.floor(Math.random() * 4)];
+                bg.appendChild(confetti);
+            }
+        }
+
+        // Iniciar surpresa
+        function startSurprise() {
+            document.getElementById('hero').style.display = 'none';
+            document.getElementById('history').classList.add('active');
+            createConfetti();
+            animateOnScroll();
+        }
+
+        // ---------- controle de seções ----------
+const sections = ['hero','history','gallery','messages','counter','final'];
+let currentIndex = 0;          // 0 = hero
+
+function showSection(idx){
+  // esconde tudo
+  sections.forEach(id => document.getElementById(id).classList.remove('active'));
+  // mostra apenas a desejada
+  document.getElementById(sections[idx]).classList.add('active');
+  currentIndex = idx;
+
+  // atualiza visibilidade dos botões
+  document.getElementById('btnPrev').style.display = idx===0 ? 'none':'block';
+  document.getElementById('btnNext').style.display = idx===sections.length-1 ? 'none':'block';
+}
+
+function changeSection(dir){
+  const next = currentIndex + dir;
+  if(next >=0 && next < sections.length) showSection(next);
+}
+
+// ---------- inicializa ----------
+showSection(0);        // mostra hero
+createConfetti();      // já existente
+updateCounter();
+setInterval(updateCounter, 1000);
+animateOnScroll();     // já existente
+
+
+        // Animações ao rolar
+        function animateOnScroll() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.timeline-item, .message-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Contador de tempo
+        function updateCounter() {
+            const startDate = new Date('2023-10-07'); // Ajuste para sua data
+            const now = new Date();
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor(days / 30);
+            const years = Math.floor(days / 365);
+            
+            document.getElementById('timeCounter').innerHTML = `
+                <div>${years} anos</div>
+                <div>${months} meses</div>
+                <div>${days} dias</div>
+                <div>juntos 💕</div>
+            `;
+        }
+
+        // Controles de música
+        let musicPlaying = false;
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const icon = document.getElementById('musicIcon');
+            
+            if (musicPlaying) {
+                music.pause();
+                icon.className = 'fas fa-music';
+            } else {
+                music.play();
+                icon.className = 'fas fa-pause';
+            }
+            musicPlaying = !musicPlaying;
+        }
+
+        // Surpresa final
+        function showFinalSurprise() {
+            document.getElementById('finalModal').style.display = 'flex';
+            document.getElementById('bgMusic').play();
+            musicPlaying = true;
+            document.getElementById('musicIcon').className = 'fas fa-pause';
+            
+            // Adicionar mais confetes
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.backgroundColor = '#ff69b4';
+                document.getElementById('bgAnimation').appendChild(confetti);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('finalModal').style.display = 'none';
+        }
+
+        // Inicializar
+        updateCounter();
+        setInterval(updateCounter, 1000);
+
+        // Adicionar evento de clique na galeria
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    item.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
